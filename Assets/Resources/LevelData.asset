@@ -12,15 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b6b0a3ae6d32104db8de0ab21ae2728, type: 3}
   m_Name: LevelData
   m_EditorClassIdentifier: 
-  MineBuildingsPositions:
-  - Position: {x: 12.5, y: 0, z: 14.5}
-  - Position: {x: 13.5, y: 0, z: 13.5}
-  - Position: {x: 14.5, y: 0, z: 12.5}
-  CraftBuildingsPositions: []
-  MarketBuildingsPositions: []
-  MinePrefab:
-    Prefab: {fileID: 149670, guid: 573b709e8468f834e8dbe6788e1871ba, type: 3}
-  CraftPrefab:
-    Prefab: {fileID: 0}
-  MarketPrefab:
-    Prefab: {fileID: 0}
+  BuildingsPositions:
+  - TypeBuilding: 0
+    BuildingPrefab: {fileID: 149670, guid: 573b709e8468f834e8dbe6788e1871ba, type: 3}
+    BuildingPositions:
+    - Position: {x: 12.5, y: 0, z: 14.5}
+    - Position: {x: 13.5, y: 0, z: 13.5}
+    - Position: {x: 14.5, y: 0, z: 12.5}
+  - TypeBuilding: 1
+    BuildingPrefab: {fileID: 150462, guid: 681372998f9890e49986679f715e6f5d, type: 3}
+    BuildingPositions:
+    - Position: {x: 11.5, y: 0, z: 11.5}
+  - TypeBuilding: 2
+    BuildingPrefab: {fileID: 128320, guid: b6efa241831641e45b35475a92c95b29, type: 3}
+    BuildingPositions:
+    - Position: {x: 9.5, y: 0, z: 9.5}
