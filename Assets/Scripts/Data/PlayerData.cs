@@ -3,7 +3,10 @@
 public class PlayerData: MonoBehaviour{
 
     [SerializeField] private LevelData _levelData;
+    [SerializeField] private ResourceData _resourceData;
+    
     public LevelData LevelData => _levelData;
+    public ResourceData ResourceData => _resourceData;
 
     public int CurrentMineCount = 0;
     

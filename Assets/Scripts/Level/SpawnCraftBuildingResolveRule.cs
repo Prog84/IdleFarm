@@ -1,10 +1,10 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class SpawnCraftBuildingResolveRule : IResolveSpawnBuildingRule{
-    public bool ResolveSpawnBuilding(TypeBuilding typeBuilding) {
+    public bool ResolveSpawnBuilding(TypeBuilding typeBuilding, List<Building> buildings) {
         if (typeBuilding == TypeBuilding.Craft) {
-
             var mineSettings =
                 PlayerData.Instance.LevelData.BuildingsPositions.FirstOrDefault(
                     p => p.TypeBuilding == TypeBuilding.Craft);
@@ -14,7 +14,7 @@ public class SpawnCraftBuildingResolveRule : IResolveSpawnBuildingRule{
                     GameObject.Instantiate(mineSettings.BuildingPrefab, mineSettings.BuildingPositions[0].Position,
                         Quaternion.identity);
                     return true;
-                } 
+                }
                 else Debug.LogError("Нет стартовой позиции для перерабатывающего здания!!!");
             }
             else Debug.LogError("Нет стартовых настроек для перерабатывающего здания!!!");

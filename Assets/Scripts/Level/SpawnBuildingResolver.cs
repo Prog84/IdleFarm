@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 
-public class SpawnBuildingResolver: ISpawnBuildingResolver{
+public class SpawnBuildingResolver : ISpawnBuildingResolver{
     private static SpawnBuildingResolver instance;
-    
+
     public static SpawnBuildingResolver Instance() {
         if (instance == null)
             instance = new SpawnBuildingResolver();
@@ -17,12 +17,11 @@ public class SpawnBuildingResolver: ISpawnBuildingResolver{
         _rules.Add(new SpawnMarketBuildingResolveRule());
     }
 
-    public bool SpawnBuildingResolve(TypeBuilding typeBuilding) {
+    public bool SpawnBuildingResolve(TypeBuilding typeBuilding, List<Building> buildings) {
         var result = false;
         foreach (var rule in _rules) {
-            
-            result = rule.ResolveSpawnBuilding(typeBuilding);
-            
+            result = rule.ResolveSpawnBuilding(typeBuilding, buildings);
+
             if (result) {
                 break;
             }
@@ -30,5 +29,4 @@ public class SpawnBuildingResolver: ISpawnBuildingResolver{
 
         return result;
     }
-        
 }

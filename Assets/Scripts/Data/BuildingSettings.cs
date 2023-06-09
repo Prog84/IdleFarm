@@ -5,7 +5,6 @@ using UnityEngine;
 [Serializable]
 public class BuildingSettings{
     public TypeBuilding TypeBuilding;
-    public GameObject BuildingPrefab;
-    
+    public Building BuildingPrefab;
     public List<BuildingsStartPositionsData> BuildingPositions;
 }
