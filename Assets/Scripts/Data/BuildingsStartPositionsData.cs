@@ -3,6 +3,6 @@ using UnityEngine;
 
 [Serializable]
 public class BuildingsStartPositionsData{
-    public Vector3 position;
+    public Vector3 Position;
         
 }
