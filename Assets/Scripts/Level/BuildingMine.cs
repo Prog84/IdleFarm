@@ -32,7 +32,7 @@ public class BuildingMine: CraftingBuildings{
         ProductionQuantity = buildingTimeCrate.ProductionQuantity;
     }
 
-    protected override void OnStartProducingClicked(Building building, int currentResource) {
+    protected override void OnProductionStarted(Building building, int currentResource) {
         if (building.Equals(this)) {
             SetCurrentResource(currentResource);
             if (!IsWorking) {

@@ -23,16 +23,31 @@ public class Storage: MonoBehaviour{
     private void UpdateUI(TypeResource typeResource, int count) {
         switch (typeResource) {
             case TypeResource.Tree:
-                _countTree += count;
-                EventsHolder.UpdateStorageUI(typeResource, _countTree);
+                if (_countTree + count <= PlayerData.Instance.LevelData.ResourceStorageCapacity) {
+                    _countTree += count;
+                    EventsHolder.UpdateStorageUI(typeResource, _countTree);  
+                }
+                else {
+                    EventsHolder.SetStopProducing(typeResource);
+                }
                 break;
             case TypeResource.Iron:
-                _countIron += count;
-                EventsHolder.UpdateStorageUI(typeResource, _countIron);
+                if (_countIron + count <= PlayerData.Instance.LevelData.ResourceStorageCapacity) {
+                    _countIron += count;
+                    EventsHolder.UpdateStorageUI(typeResource, _countIron);    
+                }
+                else {
+                    EventsHolder.SetStopProducing(typeResource);
+                }
                 break;
             case TypeResource.Stone:
-                _countStone += count;
-                EventsHolder.UpdateStorageUI(typeResource, _countStone);
+                if (_countStone + count <= PlayerData.Instance.LevelData.ResourceStorageCapacity) {
+                    _countStone += count;
+                    EventsHolder.UpdateStorageUI(typeResource, _countStone);
+                }
+                else {
+                    EventsHolder.SetStopProducing(typeResource);
+                }
                 break;
         }
     }

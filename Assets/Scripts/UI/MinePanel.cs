@@ -91,6 +91,4 @@ public class MinePanel: MonoBehaviour{
         _startProducingLabel.text = _stopText;
         _changeResourceButton.interactable = false;
     }
-    
-    
 }

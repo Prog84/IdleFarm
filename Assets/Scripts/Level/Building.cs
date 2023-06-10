@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -11,10 +12,12 @@ public abstract class Building : MonoBehaviour, IPointerDownHandler{
     protected int CurrentRecourseIndex = 0;
 
     private void Awake() {
-        EventsHolder.StartProducingClicked += OnStartProducingClicked;
+        EventsHolder.ProductionStarted += OnProductionStarted;
+        EventsHolder.ProductionStopped += OnProductionStopped;
     }
     private void OnDestroy() {
-        EventsHolder.StartProducingClicked -= OnStartProducingClicked;
+        EventsHolder.ProductionStarted -= OnProductionStarted;
+        EventsHolder.ProductionStopped -= OnProductionStopped;
     }
 
     public virtual void Init(TypeBuilding typeBuilding, List<TypeResource> availableRecourses, BuildingTimeCrate buildingTimeCrate) {
@@ -32,9 +35,15 @@ public abstract class Building : MonoBehaviour, IPointerDownHandler{
         EventsHolder.SetBuildingClick(this);
     }
 
-    protected virtual void OnStartProducingClicked(Building building, int currentResource) {
+    protected virtual void OnProductionStarted(Building building, int currentResource) {
         if (building.Equals(this)) {
             CurrentRecourseIndex = currentResource;
+        }
+    }
+    
+    private void OnProductionStopped(TypeResource typeResource) {
+        if (CurrentResource == typeResource) {
+            IsWorking = false;
         }
     }
 
