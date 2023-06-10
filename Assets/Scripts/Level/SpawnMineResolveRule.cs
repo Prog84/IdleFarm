@@ -12,8 +12,15 @@ public class SpawnMineResolveRule : IResolveSpawnBuildingRule{
             if (mineSettings != null) {
                 for (int i = 0; i < PlayerData.Instance.CurrentMineCount; i++) {
                     if (i < mineSettings.BuildingPositions.Count) {
-                        buildings.Add(GameObject.Instantiate(mineSettings.BuildingPrefab,
-                            mineSettings.BuildingPositions[i].Position, Quaternion.identity));
+                        var building = GameObject.Instantiate(mineSettings.BuildingPrefab,
+                            mineSettings.BuildingPositions[i].Position, Quaternion.identity);
+
+                        var listTimes =   PlayerData.Instance.BuildingTimeCrateData.ListBuildingTimeCrates.FirstOrDefault(
+                            p => p.TypeBuilding == TypeBuilding.Mine);
+                        if (i < listTimes.BuildingTimeCrates.Count) {
+                            building.Init(typeBuilding, mineSettings.AvailableResources,  listTimes.BuildingTimeCrates[i]);    
+                        }
+                        buildings.Add(building);
                     }
                     else {
                         Debug.LogError("Стартовых позиций меньше, чем количество  ресурсных зданий!!!");

@@ -23,9 +23,9 @@ public class BuildingsPanel: MonoBehaviour{
         }
     }
 
-    private void ChangePanelVisibility(bool isEnable) {
+    public void ChangePanelVisibility(bool isEnable) {
         _canvasGroup.alpha = isEnable ? 1f : 0f;
         _canvasGroup.interactable = isEnable;
-        _canvasGroup.blocksRaycasts = false;
+        _canvasGroup.blocksRaycasts = isEnable;
     }
 }
