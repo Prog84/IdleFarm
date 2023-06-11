@@ -124,6 +124,7 @@ public class CraftPanel : MonoBehaviour{
             _currentCraftItem = firstRes;
         }
         else {
+            _currentCraftItem = null;
             _result.sprite = PlayerData.Instance.ResourceData.EmptyIcon;
             _startProducingButton.interactable = false;
         }
