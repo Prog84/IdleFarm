@@ -13,11 +13,12 @@ public class SpawnCraftBuildingResolveRule : IResolveSpawnBuildingRule{
                 if (craftSettings.BuildingPositions.Count > 0) {
                     var building = GameObject.Instantiate(craftSettings.BuildingPrefab,
                         craftSettings.BuildingPositions[0].Position, Quaternion.identity);
-                    var listTimes =   PlayerData.Instance.BuildingTimeCrateData.ListBuildingTimeCrates.FirstOrDefault(
+                    var listTimes = PlayerData.Instance.BuildingTimeCrateData.ListBuildingTimeCrates.FirstOrDefault(
                         p => p.TypeBuilding == TypeBuilding.Craft);
                     if (listTimes.BuildingTimeCrates.Count > 0) {
-                        building.Init(typeBuilding, craftSettings.AvailableResources,  listTimes.BuildingTimeCrates[0]);    
+                        building.Init(typeBuilding, craftSettings.AvailableResources, listTimes.BuildingTimeCrates[0]);
                     }
+
                     buildings.Add(building);
                     return true;
                 }

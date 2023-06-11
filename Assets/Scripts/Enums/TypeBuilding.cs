@@ -1,5 +1,5 @@
 ﻿public enum TypeBuilding{
-        Mine,
-        Craft,
-        Market
+    Mine,
+    Craft,
+    Market
 }

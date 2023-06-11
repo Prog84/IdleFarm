@@ -14,12 +14,13 @@ public abstract class Building : MonoBehaviour, IPointerDownHandler{
     private void Awake() {
         EventsHolder.ProductionStarted += OnProductionStarted;
     }
+
     private void OnDestroy() {
         EventsHolder.ProductionStarted -= OnProductionStarted;
     }
 
-    public virtual void Init(TypeBuilding typeBuilding, List<RecourseItem> availableRecourses, BuildingTimeCrate buildingTimeCrate) {
-
+    public virtual void Init(TypeBuilding typeBuilding, List<RecourseItem> availableRecourses,
+        BuildingTimeCrate buildingTimeCrate) {
         TypeBuilding = typeBuilding;
         AvailableResources = availableRecourses;
 
@@ -43,13 +44,13 @@ public abstract class Building : MonoBehaviour, IPointerDownHandler{
         }
     }
 
-    protected virtual void  SetCurrentResource(TypeResource currentResource) {
+    protected virtual void SetCurrentResource(TypeResource currentResource) {
         for (int i = 0; i < AvailableResources.Count; i++) {
             if (AvailableResources[i].TypeResource == currentResource) {
                 CurrentRecourseIndex = i;
             }
         }
+
         CurrentResource = AvailableResources[CurrentRecourseIndex].TypeResource;
     }
-
 }

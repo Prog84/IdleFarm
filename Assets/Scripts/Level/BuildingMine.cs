@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class BuildingMine: CraftingBuildings{
+public class BuildingMine : CraftingBuildings{
     private void Start() {
         CurrentTime = TimeToCreate;
     }
@@ -10,7 +10,6 @@ public class BuildingMine: CraftingBuildings{
         if (IsWorking) {
             if (CurrentTime > 0) {
                 CurrentTime -= Time.deltaTime;
-
                 if (CurrentTime <= 0) {
                     EventsHolder.SetResourceProduced(CurrentResource, ProductionQuantity);
                     CurrentTime = TimeToCreate;
@@ -18,9 +17,9 @@ public class BuildingMine: CraftingBuildings{
             }
         }
     }
-    
-    public override void Init(TypeBuilding typeBuilding, List<RecourseItem> availableRecourses, BuildingTimeCrate buildingTimeCrate) {
 
+    public override void Init(TypeBuilding typeBuilding, List<RecourseItem> availableRecourses,
+        BuildingTimeCrate buildingTimeCrate) {
         TypeBuilding = typeBuilding;
         AvailableResources = availableRecourses;
 

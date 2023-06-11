@@ -4,20 +4,22 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CraftPanel: MonoBehaviour{
-    [Header("Resource Buttons")]
-    [SerializeField] private Button _changeResourceButtonOne;
+public class CraftPanel : MonoBehaviour{
+    [Header("Resource Buttons")] [SerializeField]
+    private Button _changeResourceButtonOne;
+
     [SerializeField] private Image _resourceIconOne;
     [SerializeField] private Button _changeResourceButtonTwo;
     [SerializeField] private Image _resourceIconTwo;
-    
-    [Header("Result Button")]
-    [SerializeField] private Button _startProducingButton;
+
+    [Header("Result Button")] [SerializeField]
+    private Button _startProducingButton;
+
     [SerializeField] private Text _startProducingLabel;
     [SerializeField] private Image _result;
-    
+
     private List<ResourceSettings> _resourceIcons;
-    
+
     private int _currentOneRecourseIndex = 0;
     private int _currentTwoRecourseIndex = 0;
     private CraftItem _currentCraftItem;
@@ -52,40 +54,40 @@ public class CraftPanel: MonoBehaviour{
         _isStarted = building.IsWorking;
 
         if (_isStarted) {
-            SetStopButton();     
+            SetStopButton();
         }
         else {
             SetStartButton();
         }
-       
+
         SetStartIcon();
     }
-    
+
     private void SetStartIcon() {
         _resourceIcons = PlayerData.Instance.ResourceData.ResourceIcons;
         SetResourceOneIcon();
         SetResourceTwoIcon();
     }
-    
+
     private void OnChangeOneResourceClick() {
         _currentOneRecourseIndex++;
         if (_currentOneRecourseIndex > _resourceIcons.Count - 1)
             _currentOneRecourseIndex = 0;
         SetResourceOneIcon();
     }
-    
+
     private void OnChangeTwoResourceClick() {
         _currentTwoRecourseIndex++;
         if (_currentTwoRecourseIndex > _resourceIcons.Count - 1)
             _currentTwoRecourseIndex = 0;
         SetResourceTwoIcon();
     }
-    
+
     private void SetResourceOneIcon() {
         _resourceIconOne.sprite = _resourceIcons[_currentOneRecourseIndex].Icon;
         CheckCraft();
     }
-    
+
     private void SetResourceTwoIcon() {
         _resourceIconTwo.sprite = _resourceIcons[_currentTwoRecourseIndex].Icon;
         CheckCraft();
@@ -100,27 +102,26 @@ public class CraftPanel: MonoBehaviour{
     private void CheckCraft(CraftItem craftItem) {
         var isEnough = PlayerData.Instance.CheckCountResources(craftItem);
         if (!_isStarted) {
-            _startProducingButton.interactable = isEnough;    
+            _startProducingButton.interactable = isEnough;
         }
     }
 
     private void CheckCraft() {
-        var firstRes = PlayerData.Instance.CraftData.CraftItems.FirstOrDefault(i => 
-            i.NeedFirstResource.TypeResource == _resourceIcons[_currentOneRecourseIndex].TypeResource 
-            && i.NeedSecondResource.TypeResource == _resourceIcons[_currentTwoRecourseIndex].TypeResource 
-            || i.NeedFirstResource.TypeResource == _resourceIcons[_currentTwoRecourseIndex].TypeResource 
+        var firstRes = PlayerData.Instance.CraftData.CraftItems.FirstOrDefault(i =>
+            i.NeedFirstResource.TypeResource == _resourceIcons[_currentOneRecourseIndex].TypeResource
+            && i.NeedSecondResource.TypeResource == _resourceIcons[_currentTwoRecourseIndex].TypeResource
+            || i.NeedFirstResource.TypeResource == _resourceIcons[_currentTwoRecourseIndex].TypeResource
             && i.NeedSecondResource.TypeResource == _resourceIcons[_currentOneRecourseIndex].TypeResource);
-        
+
         if (firstRes != null) {
-            
-         var iconItem = PlayerData.Instance.ResourceData.CraftIcons.FirstOrDefault(i =>
-                    i.TypeResource == firstRes.CraftResource);
-         _result.sprite = iconItem.Icon;
+            var iconItem = PlayerData.Instance.ResourceData.CraftIcons.FirstOrDefault(i =>
+                i.TypeResource == firstRes.CraftResource);
+            _result.sprite = iconItem.Icon;
 
-         var isEnough = PlayerData.Instance.CheckCountResources(firstRes);
+            var isEnough = PlayerData.Instance.CheckCountResources(firstRes);
 
-         _startProducingButton.interactable = isEnough;
-         _currentCraftItem = firstRes;
+            _startProducingButton.interactable = isEnough;
+            _currentCraftItem = firstRes;
         }
         else {
             _result.sprite = PlayerData.Instance.ResourceData.EmptyIcon;
@@ -133,7 +134,7 @@ public class CraftPanel: MonoBehaviour{
         EventsHolder.SetStartProducingClick(_currentBuilding, _currentCraftItem.CraftResource);
         ChangeButton();
     }
-    
+
     private void ChangeButton() {
         if (_isStarted) {
             SetStartButton();
@@ -142,14 +143,14 @@ public class CraftPanel: MonoBehaviour{
             SetStopButton();
         }
     }
-    
+
     private void SetStartButton() {
         _isStarted = false;
         _startProducingLabel.text = _startText;
         _changeResourceButtonOne.interactable = true;
         _changeResourceButtonTwo.interactable = true;
     }
-    
+
     private void SetStopButton() {
         _isStarted = true;
         _startProducingLabel.text = _stopText;

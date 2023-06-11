@@ -1,12 +1,12 @@
 ﻿using System;
 using UnityEngine;
 
-public class BuildingsPanel: MonoBehaviour{
+public class BuildingsPanel : MonoBehaviour{
     [SerializeField] private CanvasGroup _canvasGroup;
     [SerializeField] private MinePanel _minePanel;
     [SerializeField] private CraftPanel _craftPanel;
     [SerializeField] private MarketPanel _marketPanel;
-    
+
     private void Awake() {
         EventsHolder.BuildingClicked += OnBuildingClicked;
         ChangePanelVisibility(false);

@@ -1,8 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class StoragePanel: MonoBehaviour{
-
+public class StoragePanel : MonoBehaviour{
     [SerializeField] private Text _labelTree;
     [SerializeField] private Text _labelIron;
     [SerializeField] private Text _labelStone;
@@ -15,14 +14,22 @@ public class StoragePanel: MonoBehaviour{
     private void Awake() {
         EventsHolder.StorageUpdated += OnStorageUpdated;
         SetGoal();
+        StorageInitUI();
     }
 
     private void OnDestroy() {
         EventsHolder.StorageUpdated -= OnStorageUpdated;
     }
-    
+
     private void SetGoal() {
-        _labelGoal.text = "Goal " + PlayerData.Instance.LevelGoalData.LevelGoals[PlayerData.Instance.CurrentLevelIndex].goal;
+        _labelGoal.text =
+            "Goal " + PlayerData.Instance.LevelGoalData.LevelGoals[PlayerData.Instance.CurrentLevelIndex].goal;
+    }
+
+    private void StorageInitUI() {
+        foreach (var playerResource in PlayerData.Instance.PlayerResources) {
+            EventsHolder.UpdateStorageUI(playerResource.Key, playerResource.Value);
+        }
     }
 
     private void OnStorageUpdated(TypeResource typeResource, int count) {

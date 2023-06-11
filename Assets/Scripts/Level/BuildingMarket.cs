@@ -1,2 +1,2 @@
-﻿public class BuildingMarket: Building{
+﻿public class BuildingMarket : Building{
 }

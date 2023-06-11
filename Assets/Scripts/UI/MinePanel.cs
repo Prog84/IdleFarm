@@ -2,13 +2,15 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MinePanel: MonoBehaviour{
-    [Header("Resource Button")]
-    [SerializeField] private Button _changeResourceButton;
+public class MinePanel : MonoBehaviour{
+    [Header("Resource Button")] [SerializeField]
+    private Button _changeResourceButton;
+
     [SerializeField] private Image _resourceIcon;
-    
-    [Header("Producing Button")]
-    [SerializeField] private Button _startProducingButton;
+
+    [Header("Producing Button")] [SerializeField]
+    private Button _startProducingButton;
+
     [SerializeField] private Text _startProducingLabel;
     private string _startText = "Start";
     private string _stopText = "Stop";
@@ -33,15 +35,15 @@ public class MinePanel: MonoBehaviour{
         _isStarted = building.IsWorking;
 
         if (_isStarted) {
-            SetStopButton();     
+            SetStopButton();
         }
         else {
             SetStartButton();
         }
-       
+
         SetStartIcon();
     }
-    
+
     private void OnStartClick() {
         EventsHolder.SetStartProducingClick(_currentBuilding, _resourceItems[_currentRecourseIndex].TypeResource);
         ChangeButton();
@@ -61,7 +63,7 @@ public class MinePanel: MonoBehaviour{
     private void SetResourceIcon() {
         _resourceIcon.sprite = _resourceItems[_currentRecourseIndex].Icon;
     }
-    
+
     private void OnChangeResourceClick() {
         _currentRecourseIndex++;
         if (_currentRecourseIndex > _resourceItems.Count - 1)
@@ -83,7 +85,7 @@ public class MinePanel: MonoBehaviour{
         _startProducingLabel.text = _startText;
         _changeResourceButton.interactable = true;
     }
-    
+
     private void SetStopButton() {
         _isStarted = true;
         _startProducingLabel.text = _stopText;

@@ -15,11 +15,13 @@ public class SpawnMineResolveRule : IResolveSpawnBuildingRule{
                         var building = GameObject.Instantiate(mineSettings.BuildingPrefab,
                             mineSettings.BuildingPositions[i].Position, Quaternion.identity);
 
-                        var listTimes =   PlayerData.Instance.BuildingTimeCrateData.ListBuildingTimeCrates.FirstOrDefault(
+                        var listTimes = PlayerData.Instance.BuildingTimeCrateData.ListBuildingTimeCrates.FirstOrDefault(
                             p => p.TypeBuilding == TypeBuilding.Mine);
                         if (i < listTimes.BuildingTimeCrates.Count) {
-                            building.Init(typeBuilding, mineSettings.AvailableResources,  listTimes.BuildingTimeCrates[i]);    
+                            building.Init(typeBuilding, mineSettings.AvailableResources,
+                                listTimes.BuildingTimeCrates[i]);
                         }
+
                         buildings.Add(building);
                     }
                     else {

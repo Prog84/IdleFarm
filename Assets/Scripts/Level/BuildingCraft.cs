@@ -2,8 +2,7 @@
 using System.Linq;
 using UnityEngine;
 
-public class BuildingCraft: CraftingBuildings{
-
+public class BuildingCraft : CraftingBuildings{
     private void Update() {
         if (IsWorking) {
             if (CurrentTime > 0) {
@@ -19,27 +18,21 @@ public class BuildingCraft: CraftingBuildings{
                         IsWorking = false;
                         EventsHolder.StopCraft(CurrentResource);
                     }
-                    CurrentTime = TimeToCreate;   
+
+                    CurrentTime = TimeToCreate;
                 }
             }
         }
     }
 
 
-    public override void Init(TypeBuilding typeBuilding, List<RecourseItem> availableRecourses, BuildingTimeCrate buildingTimeCrate) {
-
+    public override void Init(TypeBuilding typeBuilding, List<RecourseItem> availableRecourses,
+        BuildingTimeCrate buildingTimeCrate) {
         TypeBuilding = typeBuilding;
         AvailableResources = availableRecourses;
-
-        /*if (AvailableResources.Count > 0) {
-            CurrentRecourseIndex = 0;
-            CurrentResource = AvailableResources[CurrentRecourseIndex].TypeResource;
-        }*/
-
         TimeToCreate = buildingTimeCrate.TimeToCrate;
         CurrentTime = TimeToCreate;
         ProductionQuantity = buildingTimeCrate.ProductionQuantity;
-        
     }
 
     private bool CheckCraft() {
@@ -47,7 +40,6 @@ public class BuildingCraft: CraftingBuildings{
             i.CraftResource == CurrentResource);
 
         if (firstRes != null) {
-
             var isEnough = PlayerData.Instance.CheckCountResources(firstRes);
 
             if (isEnough) {
@@ -57,6 +49,7 @@ public class BuildingCraft: CraftingBuildings{
                 return false;
             }
         }
+
         return false;
     }
 }
