@@ -15,13 +15,13 @@ MonoBehaviour:
   ListBuildingTimeCrates:
   - TypeBuilding: 0
     BuildingTimeCrates:
-    - TimeToCrate: 2
+    - TimeToCrate: 4
       ProductionQuantity: 1
-    - TimeToCrate: 3
+    - TimeToCrate: 4
       ProductionQuantity: 1
     - TimeToCrate: 4
       ProductionQuantity: 1
   - TypeBuilding: 1
     BuildingTimeCrates:
-    - TimeToCrate: 10
+    - TimeToCrate: 5
       ProductionQuantity: 1

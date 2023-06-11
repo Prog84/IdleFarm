@@ -12,10 +12,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0814253de5b4746b5b3a5fb0d11898c, type: 3}
   m_Name: Resource Data
   m_EditorClassIdentifier: 
+  EmptyIcon: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
   ResourceIcons:
   - Icon: {fileID: 21300000, guid: 3aab6dcbd7167c143a4b6315555f7ed8, type: 3}
     TypeResource: 0
+    price: 1
   - Icon: {fileID: 21300000, guid: 56ecdae8c80e41b4aaff8956a90c3ad5, type: 3}
     TypeResource: 1
+    price: 2
   - Icon: {fileID: 21300000, guid: 8f30258d8c1824c4ab2069ace7fdbc62, type: 3}
     TypeResource: 2
+    price: 3
+  CraftIcons:
+  - Icon: {fileID: 21300000, guid: ba4b2fe3b736c62409757b63bd18140e, type: 3}
+    TypeResource: 3
+    price: 100
+  - Icon: {fileID: 21300000, guid: 86889466b325a144d9f1d8291fb8dfbc, type: 3}
+    TypeResource: 4
+    price: 100
+  - Icon: {fileID: 21300000, guid: 393f21bdcfcf21e468815a09cce737b3, type: 3}
+    TypeResource: 5
+    price: 100

@@ -2,7 +2,8 @@
 using UnityEngine;
 
 [Serializable]
-public class ResourceIcon{
+public class ResourceSettings{
     public Sprite Icon;
     public TypeResource TypeResource;
+    public int price;
 }

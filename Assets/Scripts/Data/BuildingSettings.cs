@@ -4,7 +4,7 @@ using System.Collections.Generic;
 [Serializable]
 public class BuildingSettings{
     public TypeBuilding TypeBuilding;
-    public List<TypeResource> AvailableResources;
+    public List<RecourseItem> AvailableResources;
     public Building BuildingPrefab;
     public List<BuildingsStartPositionsData> BuildingPositions;
 }

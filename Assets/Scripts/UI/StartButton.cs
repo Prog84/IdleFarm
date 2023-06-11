@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 public class StartButton: MonoBehaviour{
     [SerializeField] private Button _startButton;
     
-    private const string mainMenuScene = "LevelScene"; 
+    private const string levelScene = "LevelScene"; 
 
     private void Awake() {
         _startButton.onClick.AddListener(OnStartButtonClicked);
@@ -16,6 +16,6 @@ public class StartButton: MonoBehaviour{
     }
 
     private void OnStartButtonClicked() {
-        SceneManager.LoadSceneAsync(mainMenuScene);
+        SceneManager.LoadSceneAsync(levelScene);
     }
 }

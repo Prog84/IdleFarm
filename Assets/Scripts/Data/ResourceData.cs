@@ -3,5 +3,7 @@ using UnityEngine;
 
 [CreateAssetMenu(fileName = "Resource Data", menuName = "Resource Data", order = 1)]
 public class ResourceData : ScriptableObject{
-    public List<ResourceIcon> ResourceIcons;
+    public Sprite EmptyIcon;
+    public List<ResourceSettings> ResourceIcons;
+    public List<ResourceSettings> CraftIcons;
 }

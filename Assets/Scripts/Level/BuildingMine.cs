@@ -19,34 +19,16 @@ public class BuildingMine: CraftingBuildings{
         }
     }
     
-    public override void Init(TypeBuilding typeBuilding, List<TypeResource> availableRecourses, BuildingTimeCrate buildingTimeCrate) {
+    public override void Init(TypeBuilding typeBuilding, List<RecourseItem> availableRecourses, BuildingTimeCrate buildingTimeCrate) {
 
         TypeBuilding = typeBuilding;
         AvailableResources = availableRecourses;
 
         if (AvailableResources.Count > 0) {
-            SetCurrentResource(0);
+            SetCurrentResource(AvailableResources[0].TypeResource);
         }
 
         TimeToCreate = buildingTimeCrate.TimeToCrate;
         ProductionQuantity = buildingTimeCrate.ProductionQuantity;
-    }
-
-    protected override void OnProductionStarted(Building building, int currentResource) {
-        if (building.Equals(this)) {
-            SetCurrentResource(currentResource);
-            if (!IsWorking) {
-                IsWorking = true;    
-            }
-            else {
-                IsWorking = false;   
-                CurrentTime = TimeToCreate;
-            }
-        }
-    }
-
-    private void SetCurrentResource(int index) {
-        CurrentRecourseIndex = index;
-        CurrentResource = AvailableResources[CurrentRecourseIndex];
     }
 }

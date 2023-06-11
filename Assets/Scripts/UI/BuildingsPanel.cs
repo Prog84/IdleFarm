@@ -4,6 +4,8 @@ using UnityEngine;
 public class BuildingsPanel: MonoBehaviour{
     [SerializeField] private CanvasGroup _canvasGroup;
     [SerializeField] private MinePanel _minePanel;
+    [SerializeField] private CraftPanel _craftPanel;
+    [SerializeField] private MarketPanel _marketPanel;
     
     private void Awake() {
         EventsHolder.BuildingClicked += OnBuildingClicked;
@@ -17,8 +19,25 @@ public class BuildingsPanel: MonoBehaviour{
     private void OnBuildingClicked(Building building) {
         switch (building.TypeBuilding) {
             case TypeBuilding.Mine:
+                _craftPanel.gameObject.SetActive(false);
+                _marketPanel.gameObject.SetActive(false);
+                _minePanel.gameObject.SetActive(true);
                 ChangePanelVisibility(true);
                 _minePanel.Init(building);
+                break;
+            case TypeBuilding.Craft:
+                _minePanel.gameObject.SetActive(false);
+                _marketPanel.gameObject.SetActive(false);
+                _craftPanel.gameObject.SetActive(true);
+                ChangePanelVisibility(true);
+                _craftPanel.Init(building);
+                break;
+            case TypeBuilding.Market:
+                _minePanel.gameObject.SetActive(false);
+                _craftPanel.gameObject.SetActive(false);
+                _marketPanel.gameObject.SetActive(true);
+                ChangePanelVisibility(true);
+                _marketPanel.Init(building);
                 break;
         }
     }

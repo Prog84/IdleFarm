@@ -1269,7 +1269,10 @@ MonoBehaviour:
   _levelData: {fileID: 11400000, guid: 7d0019aea5b3a334db4e0150237fc300, type: 2}
   _resourceData: {fileID: 11400000, guid: c32c53c3ddc2a3e49908850e807971e5, type: 2}
   _buildingTimeCrateData: {fileID: 11400000, guid: dca901ad024e35b41ac7e25d47711a73, type: 2}
+  _craftData: {fileID: 11400000, guid: 041994fed917248449609bfada4726ae, type: 2}
+  _levelGoalData: {fileID: 11400000, guid: f5d81e4d079518840bc195eebd164027, type: 2}
   CurrentMineCount: 0
+  CurrentLevelIndex: 0
 --- !u!4 &1317058957
 Transform:
   m_ObjectHideFlags: 0

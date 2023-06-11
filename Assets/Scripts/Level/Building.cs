@@ -8,26 +8,24 @@ public abstract class Building : MonoBehaviour, IPointerDownHandler{
     public TypeResource CurrentResource;
     public bool IsWorking;
 
-    protected List<TypeResource> AvailableResources;
+    protected List<RecourseItem> AvailableResources;
     protected int CurrentRecourseIndex = 0;
 
     private void Awake() {
         EventsHolder.ProductionStarted += OnProductionStarted;
-        EventsHolder.ProductionStopped += OnProductionStopped;
     }
     private void OnDestroy() {
         EventsHolder.ProductionStarted -= OnProductionStarted;
-        EventsHolder.ProductionStopped -= OnProductionStopped;
     }
 
-    public virtual void Init(TypeBuilding typeBuilding, List<TypeResource> availableRecourses, BuildingTimeCrate buildingTimeCrate) {
+    public virtual void Init(TypeBuilding typeBuilding, List<RecourseItem> availableRecourses, BuildingTimeCrate buildingTimeCrate) {
 
         TypeBuilding = typeBuilding;
         AvailableResources = availableRecourses;
 
         if (AvailableResources.Count > 0) {
             CurrentRecourseIndex = 0;
-            CurrentResource = AvailableResources[CurrentRecourseIndex];
+            CurrentResource = AvailableResources[CurrentRecourseIndex].TypeResource;
         }
     }
 
@@ -35,16 +33,23 @@ public abstract class Building : MonoBehaviour, IPointerDownHandler{
         EventsHolder.SetBuildingClick(this);
     }
 
-    protected virtual void OnProductionStarted(Building building, int currentResource) {
+    protected virtual void OnProductionStarted(Building building, TypeResource currentResource) {
         if (building.Equals(this)) {
-            CurrentRecourseIndex = currentResource;
+            for (int i = 0; i < AvailableResources.Count; i++) {
+                if (AvailableResources[i].TypeResource == currentResource) {
+                    CurrentRecourseIndex = i;
+                }
+            }
         }
     }
-    
-    private void OnProductionStopped(TypeResource typeResource) {
-        if (CurrentResource == typeResource) {
-            IsWorking = false;
+
+    protected virtual void  SetCurrentResource(TypeResource currentResource) {
+        for (int i = 0; i < AvailableResources.Count; i++) {
+            if (AvailableResources[i].TypeResource == currentResource) {
+                CurrentRecourseIndex = i;
+            }
         }
+        CurrentResource = AvailableResources[CurrentRecourseIndex].TypeResource;
     }
 
 }

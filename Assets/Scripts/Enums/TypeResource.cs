@@ -1,5 +1,9 @@
 ﻿public enum TypeResource{
     Tree,
     Iron,
-    Stone
+    Stone,
+    Hammer,
+    Fork,
+    Drill,
+    Money
 }

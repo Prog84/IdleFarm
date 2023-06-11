@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47da54f218684a05b8a7bf678b207922, type: 3}
+  m_Name: CraftData
+  m_EditorClassIdentifier: 
+  CraftItems:
+  - NeedFirstResource:
+      TypeResource: 0
+      quantity: 1
+    NeedSecondResource:
+      TypeResource: 2
+      quantity: 1
+    CraftResource: 3
+  - NeedFirstResource:
+      TypeResource: 0
+      quantity: 1
+    NeedSecondResource:
+      TypeResource: 1
+      quantity: 1
+    CraftResource: 4
+  - NeedFirstResource:
+      TypeResource: 2
+      quantity: 1
+    NeedSecondResource:
+      TypeResource: 1
+      quantity: 1
+    CraftResource: 5

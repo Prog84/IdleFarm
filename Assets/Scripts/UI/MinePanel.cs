@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using System.Linq;
 
 public class MinePanel: MonoBehaviour{
     [Header("Resource Button")]
@@ -15,7 +13,7 @@ public class MinePanel: MonoBehaviour{
     private string _startText = "Start";
     private string _stopText = "Stop";
 
-    private List<ResourceIcon> _resourceIcons;
+    private List<ResourceSettings> _resourceItems;
     private Building _currentBuilding;
     private int _currentRecourseIndex = 0;
     private bool _isStarted = false;
@@ -45,15 +43,15 @@ public class MinePanel: MonoBehaviour{
     }
     
     private void OnStartClick() {
-        EventsHolder.SetStartProducingClick(_currentBuilding, _currentRecourseIndex);
+        EventsHolder.SetStartProducingClick(_currentBuilding, _resourceItems[_currentRecourseIndex].TypeResource);
         ChangeButton();
     }
 
     private void SetStartIcon() {
-        _resourceIcons = PlayerData.Instance.ResourceData.ResourceIcons;
+        _resourceItems = PlayerData.Instance.ResourceData.ResourceIcons;
 
-        for (int i = 0; i < _resourceIcons.Count; i++) {
-            if (_resourceIcons[i].TypeResource == _currentBuilding.CurrentResource) {
+        for (int i = 0; i < _resourceItems.Count; i++) {
+            if (_resourceItems[i].TypeResource == _currentBuilding.CurrentResource) {
                 _currentRecourseIndex = i;
                 SetResourceIcon();
             }
@@ -61,12 +59,12 @@ public class MinePanel: MonoBehaviour{
     }
 
     private void SetResourceIcon() {
-        _resourceIcon.sprite = _resourceIcons[_currentRecourseIndex].Icon;
+        _resourceIcon.sprite = _resourceItems[_currentRecourseIndex].Icon;
     }
     
     private void OnChangeResourceClick() {
         _currentRecourseIndex++;
-        if (_currentRecourseIndex > _resourceIcons.Count - 1)
+        if (_currentRecourseIndex > _resourceItems.Count - 1)
             _currentRecourseIndex = 0;
         SetResourceIcon();
     }
